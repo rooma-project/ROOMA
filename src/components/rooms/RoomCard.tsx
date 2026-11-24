@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 import Image from "next/image";
 import type { Room } from "@/data/rooms";
 
@@ -33,8 +33,13 @@ export default function RoomCard({ room }: RoomCardProps) {
         </p>
 
         <h3 className="text-xl font-bold">
-          {room.title}
-        </h3>
+  <Link
+    href={`/rooms/${room.id}`}
+    className="hover:underline"
+  >
+    {room.title}
+  </Link>
+</h3>
 
         <p className="mt-3 text-sm text-muted">
           {room.size} m² ·{" "}
@@ -49,6 +54,13 @@ export default function RoomCard({ room }: RoomCardProps) {
             </span>
           </p>
         </div>
+
+        <Link
+  href={`/rooms/${room.id}`}
+  className="mt-5 block bg-accent px-5 py-3 text-center text-sm font-semibold transition-colors hover:bg-foreground hover:text-white"
+>
+  View room ↗
+</Link>
 
       </div>
     </article>

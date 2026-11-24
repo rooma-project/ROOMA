@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 export default function Hero() {
   return (
     <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28">
@@ -20,12 +20,12 @@ export default function Hero() {
         and make your student experience feel like home.
       </p>
 
-      <a
-        href="#rooms"
-        className="mt-8 inline-flex bg-accent px-8 py-4 font-semibold transition-colors hover:bg-foreground hover:text-white"
-      >
-        Explore rooms ↗
-      </a>
+      <Link
+  href="/rooms"
+  className="mt-8 inline-flex bg-accent px-8 py-4 font-semibold transition-colors hover:bg-foreground hover:text-white"
+>
+  Explore rooms ↗
+</Link>
 
     </section>
   );
