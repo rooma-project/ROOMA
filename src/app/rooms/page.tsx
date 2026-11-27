@@ -20,11 +20,18 @@ export default function RoomsPage() {
             ROOMA / Student Housing
           </p>
 
-          <h1 className="text-5xl font-black leading-none tracking-tighter md:text-8xl">
-            A place to
-            <br />
-            call <span className="bg-accent">home.</span>
-          </h1>
+          <h1 className="text-5xl font-black leading-[1.12] tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
+  <span className="block">
+    A place to
+  </span>
+
+  <span className="mt-2 block">
+    call{" "}
+    <span className="inline-block bg-accent px-2 leading-[1.05]">
+      home.
+    </span>
+  </span>
+</h1>
 
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
             Discover student accommodation that fits your
