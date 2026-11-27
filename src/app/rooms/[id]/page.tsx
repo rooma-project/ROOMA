@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -15,6 +14,12 @@ export function generateStaticParams() {
   return rooms.map((room) => ({
     id: String(room.id),
   }));
+}
+
+function formatPrice(amount: number) {
+  return `₺${amount.toLocaleString("tr-TR", {
+    maximumFractionDigits: 2,
+  })}`;
 }
 
 export default async function RoomDetailPage({
@@ -37,7 +42,6 @@ export default async function RoomDetailPage({
       <Navbar />
 
       <main className="mx-auto max-w-[1440px] px-6 py-12 md:px-12">
-
         <Link
           href="/rooms"
           className="mb-8 inline-block text-sm font-medium underline"
@@ -59,9 +63,7 @@ export default async function RoomDetailPage({
         </p>
 
         <div className="grid items-start gap-10 lg:grid-cols-[1.5fr_1fr]">
-
           <div className="min-w-0">
-
             <div className="relative aspect-[4/3] overflow-hidden bg-white">
               <Image
                 src={room.image}
@@ -105,47 +107,44 @@ export default async function RoomDetailPage({
           </div>
 
           <aside className="border border-border bg-white p-6 lg:sticky lg:top-8 md:p-8">
-
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted">
               Monthly rent
             </p>
 
-            <p className="text-5xl font-black tracking-tight">
-              €{room.price}
+            <p className="flex flex-wrap items-baseline gap-x-2 text-4xl font-black tracking-tight sm:text-5xl">
+              {formatPrice(room.price)}
               <span className="text-sm font-normal text-muted">
-                {" "}/ month
+                / month
               </span>
             </p>
 
             <div className="my-8 space-y-5 border-y border-border py-6">
-
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-3">
                 <span className="text-muted">Rent</span>
-                <span>€{room.price}</span>
+                <span className="shrink-0">{formatPrice(room.price)}</span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-3">
                 <span className="text-muted">
                   Estimated utilities
                 </span>
-                <span>€{room.utilities}</span>
+                <span className="shrink-0">{formatPrice(room.utilities)}</span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-3">
                 <span className="text-muted">
                   Refundable deposit
                 </span>
-                <span>€{room.deposit}</span>
+                <span className="shrink-0">{formatPrice(room.deposit)}</span>
               </div>
-
             </div>
 
-            <div className="mb-6 flex items-center justify-between gap-3">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
               <span className="font-semibold">
                 Monthly total
               </span>
               <span className="text-3xl font-black">
-                €{monthlyTotal}
+                {formatPrice(monthlyTotal)}
               </span>
             </div>
 
@@ -160,7 +159,6 @@ export default async function RoomDetailPage({
             <p className="mt-4 text-center text-xs text-muted">
               Demo listing — messaging coming soon.
             </p>
-
           </aside>
         </div>
       </main>

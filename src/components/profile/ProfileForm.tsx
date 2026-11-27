@@ -135,7 +135,7 @@ export default function ProfileForm() {
                 htmlFor="budget"
                 className="mb-2 block text-sm font-semibold"
               >
-                Monthly budget (€)
+                Monthly budget (₺)
               </label>
 
               <input
