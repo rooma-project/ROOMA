@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -6,7 +5,8 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Explore rooms", href: "/rooms" },
-  { label: "Find a roommate", href: "/#matching" },
+  { label: "Map view", href: "/map" },
+  { label: "Find a roommate", href: "/roommates" },
   { label: "How it works", href: "/#how-it-works" },
   { label: "Sign in", href: "/login" },
 ];
@@ -44,7 +44,7 @@ export default function Navbar() {
 
         {/* Desktop action */}
         <Link
-          href="/#how-it-works"
+          href="/register"
           className="hidden bg-accent px-5 py-3 text-sm font-semibold transition-colors hover:bg-foreground hover:text-white lg:block"
         >
           Get started ↗

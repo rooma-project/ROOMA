@@ -61,7 +61,7 @@ export default function LandlordDashboard() {
             Total listed rent
           </p>
           <p className="text-5xl font-black tracking-tight">
-            €{totalRent.toLocaleString("en-GB")}
+            ₺{totalRent.toLocaleString("en-GB")}
           </p>
           <p className="mt-3 text-sm">Combined monthly asking rent</p>
         </article>
@@ -107,7 +107,7 @@ export default function LandlordDashboard() {
                   {room.furnished ? "Furnished" : "Unfurnished"}
                 </p>
                 <p className="mt-4 text-2xl font-black">
-                  €{room.price}
+                  ₺{room.price}
                   <span className="ml-1 text-sm font-normal text-muted">/ month</span>
                 </p>
               </div>

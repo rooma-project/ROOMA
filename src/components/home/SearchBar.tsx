@@ -75,7 +75,7 @@ export default function SearchBar({
 
         <div>
           <label htmlFor="minPrice" className={labelClass}>
-            Minimum rent (€)
+            Minimum rent (₺)
           </label>
 
           <input
@@ -93,7 +93,7 @@ export default function SearchBar({
 
         <div>
           <label htmlFor="maxPrice" className={labelClass}>
-            Maximum rent (€)
+            Maximum rent (₺)
           </label>
 
           <input

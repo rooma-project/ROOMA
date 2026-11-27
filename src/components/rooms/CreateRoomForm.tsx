@@ -200,6 +200,7 @@ export default function CreateRoomForm({
                 placeholder="Enter city"
                 required
                 className={inputClass}
+                defaultValue="Istanbul"
               />
             </div>
 
@@ -259,7 +260,7 @@ export default function CreateRoomForm({
         <div className="grid gap-6 md:grid-cols-2">
           <div>
             <label htmlFor="rent" className={labelClass}>
-              Monthly rent (€)
+              Monthly rent (₺)
             </label>
 
             <input
@@ -280,7 +281,7 @@ export default function CreateRoomForm({
               htmlFor="utilities"
               className={labelClass}
             >
-              Monthly utilities (€)
+              Monthly utilities (₺)
             </label>
 
             <input
@@ -300,7 +301,7 @@ export default function CreateRoomForm({
 
           <div>
             <label htmlFor="deposit" className={labelClass}>
-              Deposit (€)
+              Deposit (₺)
             </label>
 
             <input
@@ -380,7 +381,7 @@ export default function CreateRoomForm({
           </span>
 
           <span className="text-4xl font-black tracking-tight">
-            €{monthlyTotal.toFixed(2)}
+            ₺{monthlyTotal.toFixed(2)}
           </span>
         </div>
 
