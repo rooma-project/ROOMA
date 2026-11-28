@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "@/lib/toast";
 import { useFavorites } from "@/lib/useFavorites";
 
 interface FavoriteButtonProps {
@@ -18,7 +19,17 @@ export default function FavoriteButton({ roomId, className = "" }: FavoriteButto
       <button
         type="button"
         aria-pressed={isSaved}
-        onClick={() => setError(!toggleFavorite(roomId))}
+        onClick={() => {
+          const success = toggleFavorite(roomId);
+          setError(!success);
+          if (!success) {
+            toast.error("Could not update favorites", "Check your browser storage settings.");
+          } else if (isSaved) {
+            toast.info("Removed from favorites", "Room removed from your shortlist.");
+          } else {
+            toast.success("Saved to favorites", "Room added to your shortlist.");
+          }
+        }}
         className={`inline-flex w-full items-center justify-center gap-2 border px-4 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
           isSaved ? "border-foreground bg-accent text-foreground" : "border-border bg-white text-foreground hover:border-foreground"
         }`}

@@ -13,15 +13,12 @@ import {
 } from "react-leaflet";
 
 import type { MapRoom } from "@/data/mapRooms";
+import { formatPrice } from "@/lib/formatPrice";
 
 interface RoomMapProps {
   rooms: MapRoom[];
   selectedRoomId: number | null;
   onSelectRoom: (id: number) => void;
-}
-
-function formatPrice(price: number) {
-  return `₺${price.toLocaleString("tr-TR")}`;
 }
 
 function MapFocus({

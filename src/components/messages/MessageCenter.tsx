@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { conversations, type Conversation, type DemoMessage } from "@/data/messages";
 import { useMessages } from "@/lib/useMessages";
+import { toast } from "@/lib/toast";
 
 function initials(name: string) {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join("").toUpperCase();
@@ -36,8 +37,10 @@ function ChatPanel({ conversation, history, send }: {
     if (send(conversation.id, draft)) {
       setDraft("");
       setError("");
+      toast.success("Demo message saved", "No real message was sent.");
     } else {
       setError("Could not save the demo message. Check your browser storage settings.");
+      toast.error("Could not save message", "Check your browser storage settings.");
     }
   }
 

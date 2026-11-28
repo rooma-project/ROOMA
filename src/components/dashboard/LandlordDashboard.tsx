@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { rooms } from "@/data/rooms";
+import { formatPrice } from "@/lib/formatPrice";
+import { toast } from "@/lib/toast";
 
 export default function LandlordDashboard() {
   const [listings, setListings] = useState([...rooms]);
@@ -21,6 +23,7 @@ export default function LandlordDashboard() {
     );
     setDeleteId(null);
     setMessage("Listing removed from the demo dashboard.");
+    toast.success("Listing removed", "Removed from the demo dashboard.");
   }
 
   return (
@@ -61,7 +64,7 @@ export default function LandlordDashboard() {
             Total listed rent
           </p>
           <p className="text-5xl font-black tracking-tight">
-            ₺{totalRent.toLocaleString("en-GB")}
+            {formatPrice(totalRent)}
           </p>
           <p className="mt-3 text-sm">Combined monthly asking rent</p>
         </article>
@@ -107,7 +110,7 @@ export default function LandlordDashboard() {
                   {room.furnished ? "Furnished" : "Unfurnished"}
                 </p>
                 <p className="mt-4 text-2xl font-black">
-                  ₺{room.price}
+                  {formatPrice(room.price)}
                   <span className="ml-1 text-sm font-normal text-muted">/ month</span>
                 </p>
               </div>

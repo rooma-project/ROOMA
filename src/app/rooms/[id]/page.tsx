@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { rooms } from "@/data/rooms";
 import FavoriteButton from "@/components/rooms/FavoriteButton";
+import { formatPrice } from "@/lib/formatPrice";
 
 interface RoomDetailProps {
   params: Promise<{ id: string }>;
@@ -17,16 +18,14 @@ export function generateStaticParams() {
   }));
 }
 
-function formatPrice(amount: number) {
-  return `₺${amount.toLocaleString("tr-TR", {
-    maximumFractionDigits: 2,
-  })}`;
-}
-
-export default async function RoomDetailPage({ params }: RoomDetailProps) {
+export default async function RoomDetailPage({
+  params,
+}: RoomDetailProps) {
   const { id } = await params;
 
-  const room = rooms.find((item) => String(item.id) === id);
+  const room = rooms.find(
+    (item) => String(item.id) === id
+  );
 
   if (!room) {
     notFound();
@@ -80,7 +79,9 @@ export default async function RoomDetailPage({ params }: RoomDetailProps) {
                 About this room.
               </h2>
 
-              <p className="leading-relaxed text-muted">{room.description}</p>
+              <p className="leading-relaxed text-muted">
+                {room.description}
+              </p>
             </section>
 
             <section className="py-10">
@@ -108,7 +109,9 @@ export default async function RoomDetailPage({ params }: RoomDetailProps) {
 
             <p className="flex flex-wrap items-baseline gap-x-2 text-4xl font-black tracking-tight sm:text-5xl">
               {formatPrice(room.price)}
-              <span className="text-sm font-normal text-muted">/ month</span>
+              <span className="text-sm font-normal text-muted">
+                / month
+              </span>
             </p>
 
             <div className="my-8 space-y-5 border-y border-border py-6">
@@ -118,18 +121,24 @@ export default async function RoomDetailPage({ params }: RoomDetailProps) {
               </div>
 
               <div className="flex justify-between gap-3">
-                <span className="text-muted">Estimated utilities</span>
+                <span className="text-muted">
+                  Estimated utilities
+                </span>
                 <span className="shrink-0">{formatPrice(room.utilities)}</span>
               </div>
 
               <div className="flex justify-between gap-3">
-                <span className="text-muted">Refundable deposit</span>
+                <span className="text-muted">
+                  Refundable deposit
+                </span>
                 <span className="shrink-0">{formatPrice(room.deposit)}</span>
               </div>
             </div>
 
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-              <span className="font-semibold">Monthly total</span>
+              <span className="font-semibold">
+                Monthly total
+              </span>
               <span className="text-3xl font-black">
                 {formatPrice(monthlyTotal)}
               </span>

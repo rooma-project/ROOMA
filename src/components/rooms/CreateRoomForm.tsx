@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 import type { Room } from "@/data/rooms";
+import { formatPrice } from "@/lib/formatPrice";
+import { toast } from "@/lib/toast";
 
 interface PhotoPreview {
   name: string;
@@ -152,6 +154,11 @@ export default function CreateRoomForm({
         ? "Listing changes validated. Changes are not saved to the database yet."
         : "Listing validation successful. Your listing has not been saved to the database yet."
     );
+
+    toast.info(
+      isEdit ? "Listing changes validated" : "Listing validated",
+      "Demo only — not saved to the database."
+    );
   }
 
   return (
@@ -197,10 +204,10 @@ export default function CreateRoomForm({
               <input
                 id="city"
                 name="city"
+                defaultValue="Istanbul"
                 placeholder="Enter city"
                 required
                 className={inputClass}
-                defaultValue="Istanbul"
               />
             </div>
 
@@ -215,7 +222,7 @@ export default function CreateRoomForm({
               <input
                 id="neighbourhood"
                 name="neighbourhood"
-                defaultValue={initialRoom?.location ?? ""}
+                defaultValue={initialRoom?.location.split(",")[0].trim() ?? ""}
                 placeholder="Enter neighbourhood"
                 required
                 className={inputClass}
@@ -381,7 +388,7 @@ export default function CreateRoomForm({
           </span>
 
           <span className="text-4xl font-black tracking-tight">
-            ₺{monthlyTotal.toFixed(2)}
+            {formatPrice(monthlyTotal)}
           </span>
         </div>
 

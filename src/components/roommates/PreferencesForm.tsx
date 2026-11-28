@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "@/lib/toast";
 import type { FormEvent } from "react";
 import {
   emptyPreferences,
@@ -34,8 +35,10 @@ export default function PreferencesForm() {
     try {
       sessionStorage.setItem(preferenceStorageKey, JSON.stringify(answers));
       setNotice({ text: "Preferences saved for this browser tab. No data has been sent to a database.", error: false });
+      toast.success("Preferences saved", "Saved in this browser tab only.");
     } catch {
       setNotice({ text: "Your browser could not save the demo preferences. Your answers are still in the form.", error: true });
+      toast.error("Could not save preferences", "Your answers are still in the form.");
     }
   }
 
