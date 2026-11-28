@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Room } from "@/data/rooms";
+import FavoriteButton from "@/components/rooms/FavoriteButton";
 
 interface RoomCardProps {
   room: Room;
@@ -40,7 +41,7 @@ export default function RoomCard({ room }: RoomCardProps) {
 
         <div className="mt-6 border-t border-border pt-5">
           <p className="text-3xl font-black tracking-tight">
-            ₺{room.price}
+            ₺{room.price.toLocaleString("tr-TR")}
             <span className="ml-1 text-sm font-normal text-muted">/ month</span>
           </p>
         </div>
@@ -51,6 +52,7 @@ export default function RoomCard({ room }: RoomCardProps) {
         >
           View room ↗
         </Link>
+        <FavoriteButton roomId={room.id} className="mt-3" />
       </div>
     </article>
   );

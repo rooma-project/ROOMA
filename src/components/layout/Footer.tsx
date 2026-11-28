@@ -4,6 +4,7 @@ import Link from "next/link";
 const exploreLinks = [
   { label: "Explore rooms", href: "/rooms" },
   { label: "Explore Istanbul", href: "/map" },
+  { label: "Saved rooms", href: "/favorites" },
   { label: "Find a roommate", href: "/roommates" },
   { label: "Lifestyle preferences", href: "/preferences" },
   { label: "How it works", href: "/#how-it-works" },
@@ -12,6 +13,7 @@ const exploreLinks = [
 const accountLinks = [
   { label: "Sign in", href: "/login" },
   { label: "Create an account", href: "/register" },
+  { label: "Messages", href: "/messages" },
 ];
 
 export default function Footer() {
