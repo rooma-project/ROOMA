@@ -1,17 +1,16 @@
-
 "use client";
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { toast } from "@/lib/toast";
 
 export default function ProfileForm() {
   const [fullName, setFullName] = useState("Alex Morgan");
   const [university, setUniversity] = useState("Example University");
   const [studyField, setStudyField] = useState("Computer Science");
-  const [budget, setBudget] = useState("400");
-
+  const [budget, setBudget] = useState("15000");
   const [bio, setBio] = useState(
-    "Looking for a comfortable room and friendly roommates."
+    "Looking for a comfortable room and friendly roommates.",
   );
 
   const [message, setMessage] = useState("");
@@ -28,16 +27,20 @@ export default function ProfileForm() {
     "w-full border border-border bg-background px-4 py-3 outline-none focus:border-foreground";
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  e.preventDefault();
 
-    setMessage(
-      "Demo profile updated. Changes are not saved to a database yet."
-    );
-  }
+  setMessage(
+    "Demo profile updated. Changes are not saved to a database yet."
+  );
+
+  toast.info(
+    "Profile validated",
+    "Demo only — changes are not saved yet."
+  );
+}
 
   return (
     <section className="mx-auto max-w-[1000px] px-6 py-16 md:px-12 md:py-24">
-
       <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-muted">
         ROOMA / My Account
       </p>
@@ -48,7 +51,6 @@ export default function ProfileForm() {
 
       {/* Profile header */}
       <div className="mb-8 flex items-center gap-5 border border-border bg-white p-6">
-
         <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-accent text-3xl font-black">
           {initials || "?"}
         </div>
@@ -58,15 +60,12 @@ export default function ProfileForm() {
             {fullName || "Your name"}
           </h2>
 
-          <p className="mt-2 text-sm text-muted">
-            Student · Demo profile
-          </p>
+          <p className="mt-2 text-sm text-muted">Student · Demo profile</p>
         </div>
       </div>
 
       {/* Personal information */}
       <div className="border border-border bg-white p-6 md:p-10">
-
         <h2 className="mb-8 text-3xl font-black tracking-tight">
           Personal information.
         </h2>
@@ -77,9 +76,7 @@ export default function ProfileForm() {
           method="post"
           className="space-y-6"
         >
-
           <div className="grid gap-6 md:grid-cols-2">
-
             <div>
               <label
                 htmlFor="fullName"
@@ -148,14 +145,10 @@ export default function ProfileForm() {
                 className={inputClass}
               />
             </div>
-
           </div>
 
           <div>
-            <label
-              htmlFor="bio"
-              className="mb-2 block text-sm font-semibold"
-            >
+            <label htmlFor="bio" className="mb-2 block text-sm font-semibold">
               About me
             </label>
 
@@ -188,13 +181,11 @@ export default function ProfileForm() {
               {message}
             </p>
           )}
-
         </form>
 
         <p className="mt-8 text-xs text-muted">
           Demo profile — authentication and database integration coming soon.
         </p>
-
       </div>
     </section>
   );

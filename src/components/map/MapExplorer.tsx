@@ -8,6 +8,7 @@ import Link from "next/link";
 import SearchBar, { type RoomFilters } from "@/components/home/SearchBar";
 import { mapRooms } from "@/data/mapRooms";
 import FavoriteButton from "@/components/rooms/FavoriteButton";
+import { formatPrice } from "@/lib/formatPrice";
 
 const RoomMap = dynamic(() => import("./RoomMap"), {
   ssr: false,
@@ -32,10 +33,6 @@ const initialFilters: RoomFilters = {
 function normalizeLocation(value: string) {
   return value.trim().toLocaleLowerCase("tr-TR")
     .normalize("NFD").replace(/\p{M}/gu, "").replace(/ı/g, "i");
-}
-
-function formatPrice(price: number) {
-  return `₺${price.toLocaleString("tr-TR")}`;
 }
 
 export default function MapExplorer() {

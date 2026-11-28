@@ -5,6 +5,7 @@ import Link from "next/link";
 import { roommates } from "@/data/roommates";
 import { useSavedPreferences } from "@/lib/useSavedPreferences";
 import { calculateMatch } from "@/lib/roommateMatching";
+import { formatPrice } from "@/lib/formatPrice";
 
 export default function RoommateExplorer() {
   const preferences = useSavedPreferences();
@@ -42,7 +43,7 @@ export default function RoommateExplorer() {
             <p className="mt-2 text-sm text-muted">{roommate.university} · {roommate.department}</p>
             <div className="my-5 flex flex-wrap gap-2 text-sm">
               <span className="border border-border px-3 py-2">{roommate.location}, Istanbul</span>
-              <span className="border border-border px-3 py-2">₺{roommate.budget.toLocaleString("tr-TR")} / month</span>
+              <span className="border border-border px-3 py-2">{formatPrice(roommate.budget)} / month</span>
             </div>
             <p className="leading-relaxed text-muted">{roommate.bio}</p>
             {match && <div className="mt-6 border-t border-border pt-5">

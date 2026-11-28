@@ -5,6 +5,7 @@ import type { Roommate } from "@/data/roommates";
 import { preferenceSections, type PreferenceQuestion } from "@/data/roommatePreferences";
 import { calculateMatch } from "@/lib/roommateMatching";
 import { useSavedPreferences } from "@/lib/useSavedPreferences";
+import { formatPrice } from "@/lib/formatPrice";
 
 const labels = {
   cleanliness: "Cleanliness",
@@ -41,11 +42,11 @@ export default function RoommateDetail({ roommate }: { roommate: Roommate }) {
             <p className="mt-4 text-muted">{roommate.university} · {roommate.department}</p>
             <div className="my-6 space-y-4 border-y border-border py-6">
               <div><p className="text-xs uppercase tracking-wider text-muted">Preferred area</p><p className="mt-1 font-semibold">{roommate.location}, Istanbul</p></div>
-              <div><p className="text-xs uppercase tracking-wider text-muted">Monthly budget</p><p className="mt-1 text-3xl font-black">₺{roommate.budget.toLocaleString("tr-TR")}</p></div>
+              <div><p className="text-xs uppercase tracking-wider text-muted">Monthly budget</p><p className="mt-1 text-3xl font-black">{formatPrice(roommate.budget)}</p></div>
             </div>
             <h2 className="text-2xl font-black tracking-tight">About me.</h2>
             <p className="mt-3 leading-relaxed text-muted">{roommate.bio}</p>
-            <button type="button" disabled className="mt-6 w-full cursor-not-allowed border border-border bg-background px-5 py-4 font-bold text-muted">Send message — coming soon</button>
+            <Link href={`/messages/roommate-${roommate.id}`} className="mt-6 block w-full bg-accent px-5 py-4 text-center font-bold transition-colors hover:bg-foreground hover:text-white">Send message ↗</Link>
           </article>
           <article className={`border border-border p-6 sm:p-8 ${match?.score != null ? "bg-accent" : "bg-white"}`}>
             <p className="text-xs font-semibold uppercase tracking-widest">Your compatibility</p>
