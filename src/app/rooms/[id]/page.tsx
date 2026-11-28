@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { rooms } from "@/data/rooms";
+import FavoriteButton from "@/components/rooms/FavoriteButton";
 
 interface RoomDetailProps {
   params: Promise<{ id: string }>;
@@ -22,14 +23,10 @@ function formatPrice(amount: number) {
   })}`;
 }
 
-export default async function RoomDetailPage({
-  params,
-}: RoomDetailProps) {
+export default async function RoomDetailPage({ params }: RoomDetailProps) {
   const { id } = await params;
 
-  const room = rooms.find(
-    (item) => String(item.id) === id
-  );
+  const room = rooms.find((item) => String(item.id) === id);
 
   if (!room) {
     notFound();
@@ -83,9 +80,7 @@ export default async function RoomDetailPage({
                 About this room.
               </h2>
 
-              <p className="leading-relaxed text-muted">
-                {room.description}
-              </p>
+              <p className="leading-relaxed text-muted">{room.description}</p>
             </section>
 
             <section className="py-10">
@@ -113,9 +108,7 @@ export default async function RoomDetailPage({
 
             <p className="flex flex-wrap items-baseline gap-x-2 text-4xl font-black tracking-tight sm:text-5xl">
               {formatPrice(room.price)}
-              <span className="text-sm font-normal text-muted">
-                / month
-              </span>
+              <span className="text-sm font-normal text-muted">/ month</span>
             </p>
 
             <div className="my-8 space-y-5 border-y border-border py-6">
@@ -125,39 +118,34 @@ export default async function RoomDetailPage({
               </div>
 
               <div className="flex justify-between gap-3">
-                <span className="text-muted">
-                  Estimated utilities
-                </span>
+                <span className="text-muted">Estimated utilities</span>
                 <span className="shrink-0">{formatPrice(room.utilities)}</span>
               </div>
 
               <div className="flex justify-between gap-3">
-                <span className="text-muted">
-                  Refundable deposit
-                </span>
+                <span className="text-muted">Refundable deposit</span>
                 <span className="shrink-0">{formatPrice(room.deposit)}</span>
               </div>
             </div>
 
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-              <span className="font-semibold">
-                Monthly total
-              </span>
+              <span className="font-semibold">Monthly total</span>
               <span className="text-3xl font-black">
                 {formatPrice(monthlyTotal)}
               </span>
             </div>
 
-            <button
-              type="button"
-              disabled
-              className="w-full bg-accent px-6 py-4 font-bold disabled:cursor-not-allowed"
+            <Link
+              href={`/messages/room-${room.id}`}
+              className="block w-full bg-accent px-6 py-4 text-center font-bold transition-colors hover:bg-foreground hover:text-white"
             >
               Contact landlord ↗
-            </button>
+            </Link>
+
+            <FavoriteButton roomId={room.id} className="mt-3" />
 
             <p className="mt-4 text-center text-xs text-muted">
-              Demo listing — messaging coming soon.
+              Demo listing — try our messaging interface.
             </p>
           </aside>
         </div>

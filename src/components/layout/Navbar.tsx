@@ -6,7 +6,9 @@ import Link from "next/link";
 const navLinks = [
   { label: "Explore rooms", href: "/rooms" },
   { label: "Map view", href: "/map" },
+  { label: "Favorites", href: "/favorites" },
   { label: "Find a roommate", href: "/roommates" },
+  { label: "Messages", href: "/messages" },
   { label: "How it works", href: "/#how-it-works" },
   { label: "Sign in", href: "/login" },
 ];
